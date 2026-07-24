@@ -629,27 +629,6 @@ async function handleAdapterObservation(
     });
     currentSession = withRun(currentSession, run);
 
-    if (fillResponse.result.blocked.length > 0) {
-      const paused = await pauseForApplicationReview(
-        currentSession,
-        message.observation,
-        "RapidApply could not verify every approved field on this application.",
-        "manual_verification",
-      );
-      await saveExecutionSession(paused);
-      return { ok: true, recorded: appended };
-    }
-
-    const autonomousDisposition = unresolvedAutonomousDisposition(currentSession, plans);
-    if (autonomousDisposition) {
-      await applyAutonomousDisposition(
-        currentSession,
-        message.observation,
-        autonomousDisposition,
-      );
-      return { ok: true, recorded: appended };
-    }
-
     if (interventions.active) {
       const paused = await pauseForApplicationReview(
         currentSession,
@@ -660,6 +639,17 @@ async function handleAdapterObservation(
       await saveExecutionSession(paused);
       await setExecutorBadge(paused, "?", "#d97706");
       await showApplicationIntervention(paused, interventions.active);
+      return { ok: true, recorded: appended };
+    }
+
+    if (fillResponse.result.blocked.length > 0) {
+      const paused = await pauseForApplicationReview(
+        currentSession,
+        message.observation,
+        "RapidApply could not verify every approved field on this application.",
+        "manual_verification",
+      );
+      await saveExecutionSession(paused);
       return { ok: true, recorded: appended };
     }
 
