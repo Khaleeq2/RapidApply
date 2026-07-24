@@ -1054,10 +1054,11 @@ async function handleAdapterObservation(
     }
 
     if (message.observation.pageType === "application_confirmation") {
-      // Confirmation text arriving during job navigation belongs to the
-      // previous application unless the session is actively processing its
-      // submit action (handled above). Do not skip or submit the current job.
-      await saveExecutionSession(currentSession);
+      const runningSession: ExtensionExecutionSession = {
+        ...currentSession,
+        state: "running",
+      };
+      await completeConfirmedLinkedInSubmission(runningSession, message.observation);
       return { ok: true, recorded: appended };
     }
 

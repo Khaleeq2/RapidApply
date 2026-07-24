@@ -301,10 +301,13 @@ export function isAwaitingLinkedInSubmissionConfirmation(
   observation: Pick<AdapterObservation, "pageType" | "job">,
 ): boolean {
   const currentJob = session.qualification.currentJob;
-  return session.state === "running" &&
-    session.phase === "processing_application" &&
-    observation.pageType === "application_confirmation" &&
-    Boolean(currentJob && observation.job?.externalId === currentJob.externalId);
+  if (!currentJob) return false;
+  if (observation.pageType !== "application_confirmation") return false;
+  if (observation.job?.externalId && observation.job.externalId !== currentJob.externalId) {
+    return false;
+  }
+  if (session.phase === "navigating_to_job") return false;
+  return session.state === "running" || session.state === "needs_user_input";
 }
 
 /**
