@@ -1,0 +1,28 @@
+{
+  "name": "rapidapply-workspace",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@9.12.3",
+  "scripts": {
+    "dev": "pnpm --filter @rapidapply/web dev",
+    "dev:web": "pnpm --filter @rapidapply/web dev",
+    "dev:extension": "pnpm --filter @rapidapply/extension dev",
+    "build": "pnpm --filter @rapidapply/contracts typecheck && pnpm --filter @rapidapply/web build && pnpm --filter @rapidapply/extension build",
+    "build:web": "pnpm --filter @rapidapply/web build",
+    "build:extension": "pnpm --filter @rapidapply/extension build",
+    "typecheck": "pnpm --filter @rapidapply/contracts typecheck && pnpm --filter @rapidapply/web typecheck && pnpm --filter @rapidapply/extension typecheck",
+    "test": "pnpm --filter @rapidapply/extension test && pnpm verify:application-answer-policy && pnpm --filter @rapidapply/web verify:application-answer-planning && pnpm --filter @rapidapply/web verify:application-interventions",
+    "db:generate": "pnpm --filter @rapidapply/web db:generate",
+    "db:migrate": "pnpm --filter @rapidapply/web db:migrate",
+    "db:migrate:turso": "pnpm --filter @rapidapply/web db:migrate:turso",
+    "db:check": "pnpm --filter @rapidapply/web db:check",
+    "verify:executor-handoff": "pnpm --filter @rapidapply/web verify:executor-handoff",
+    "verify:submission-flow": "pnpm --filter @rapidapply/web verify:submission-flow",
+    "verify:candidate-profile": "pnpm --filter @rapidapply/web verify:candidate-profile",
+    "verify:resume-generation": "pnpm --filter @rapidapply/web verify:resume-generation",
+    "verify:ai-drafting": "pnpm --filter @rapidapply/web verify:ai-drafting",
+    "verify:application-answer-provider-live": "pnpm --filter @rapidapply/web verify:application-answer-provider-live",
+    "verify:application-answer-policy": "pnpm --filter @rapidapply/web verify:application-answer-policy",
+    "verify:mvp": "pnpm typecheck && pnpm test && pnpm verify:candidate-profile && pnpm verify:resume-generation && pnpm verify:executor-handoff && pnpm verify:submission-flow && RAPIDAPPLY_NEXT_DIST_DIR=.next-verify pnpm --filter @rapidapply/web build && pnpm --filter @rapidapply/extension verify:production-package"
+  }
+}

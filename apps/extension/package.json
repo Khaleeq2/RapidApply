@@ -1,0 +1,25 @@
+{
+  "name": "@rapidapply/extension",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wxt",
+    "build": "wxt build",
+    "verify:production-package": "pnpm build && node scripts/verify-production-package.mjs",
+    "zip": "wxt zip",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@rapidapply/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.2.2",
+    "happy-dom": "20.11.0",
+    "typescript": "^5.3.3",
+    "vitest": "4.1.10",
+    "wxt": "^0.20.27"
+  }
+}

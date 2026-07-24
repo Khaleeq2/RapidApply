@@ -1,0 +1,17 @@
+node_modules/
+.next/
+.next-verify/
+.wxt/
+.output/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
+apps/web/data/
+*.tsbuildinfo
+*.db*
+*.zip
+.DS_Store
+tmp/
+output/

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RapidApply Browser Helper</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div class="mark">RA</div>
+        <div>
+          <h1>RapidApply</h1>
+          <p>Browser helper</p>
+        </div>
+      </header>
+
+      <section class="status-card">
+        <span class="status-dot" id="status-dot"></span>
+        <div>
+          <strong id="status-title">Checking…</strong>
+          <p id="status-detail">Looking for an active campaign.</p>
+        </div>
+      </section>
+
+      <p class="notice">The helper coordinates your active campaign and asks only when a candidate decision is needed.</p>
+      <p id="feedback" class="feedback" role="status"></p>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

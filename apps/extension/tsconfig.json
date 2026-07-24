@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "types": ["chrome", "vitest/globals"]
+  },
+  "include": ["entrypoints/**/*.ts", "src/**/*.ts", "test/**/*.ts", "vitest.config.ts", "wxt.config.ts"]
+}
